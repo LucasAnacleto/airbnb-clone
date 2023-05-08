@@ -47,20 +47,25 @@ const LoginModal = () => {
             ...data,
             redirect: false
         })
-        .then((callback) => {
-            setIsLoading(false);
+            .then((callback) => {
+                setIsLoading(false);
 
-            if (callback?.ok) {
-                toast.success('Logged in');
-                router.refresh();
-                loginModal.onClose();
-            }
+                if (callback?.ok) {
+                    toast.success('Logged in');
+                    router.refresh();
+                    loginModal.onClose();
+                }
 
-            if (callback?.error) {
-                toast.error(callback.error);
-            }
-        })
+                if (callback?.error) {
+                    toast.error(callback.error);
+                }
+            })
     }
+
+    const toggle = useCallback(() => {
+        loginModal.onClose()
+        registerModal.onOpen()
+    }, [loginModal, registerModal])
 
     const bodyContent = (
         <div className="flex flex-col gap-4">
@@ -113,17 +118,17 @@ const LoginModal = () => {
             >
                 <div className="justify-center flex flex-row items-center gap-2">
                     <div>
-                        Já tem uma conta?
+                        Primeira vez usando o Airbnb?
                     </div>
                     <div
-                        onClick={registerModal.onClose}
+                        onClick={toggle}
                         className="
                             text-neutral-800
                             cursor-pointer
                             hover:underline
                         "
                     >
-                        Cadastre-se
+                        Crie a sua conta aqui
                     </div>
                 </div>
 
