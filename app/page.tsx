@@ -31,7 +31,7 @@ export default async function Home() {
           2xl:grid-cols-6
           gap-8
         ">
-          {listings.map((listings: any) => {
+          {listings.map((listings) => {
             return (
               <ListingCard
                 currentUser={currentUser}
